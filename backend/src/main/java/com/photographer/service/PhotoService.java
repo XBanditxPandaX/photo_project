@@ -32,11 +32,12 @@ public class PhotoService {
     }
 
     @Transactional
-    public Photo savePhoto(String title, String description, String url) throws IOException {
+    public Photo savePhoto(String title, String description, String url, String category) throws IOException {
         Photo photo = Photo.builder()
                 .title(title)
                 .description(description)
                 .imageUrl(url)
+                .category(category)
                 .build();
         return photoRepository.save(photo);
     }

@@ -21,13 +21,14 @@ export const photoService = {
     return `${API_BASE_URL}/${id}/image`;
   },
 
-  async uploadPhoto(title, description, imageFile) {
+  async uploadPhoto(title, description, imageUrl, category) {
     const formData = new FormData();
     formData.append('title', title);
     if (description) {
       formData.append('description', description);
     }
-    formData.append('image', imageFile);
+    formData.append('image', imageUrl);
+    formData.append('category', category);
 
     const response = await fetch(API_BASE_URL + "/photos", {
       method: 'POST',
