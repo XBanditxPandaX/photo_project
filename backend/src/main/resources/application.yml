@@ -7,10 +7,6 @@ spring:
     username: ${PGUSER:admin}
     password: ${PGPASSWORD:admin}
     driver-class-name: org.postgresql.Driver
-  web:
-    cors:
-
-      allowed-origins: '*'
   servlet:
     multipart:
       max-file-size: 10MB

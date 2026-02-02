@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("/api/photos")
-@CrossOrigin(origins = "http://localhost:5173")
 public class PhotoController {
 
     private final PhotoService photoService;
