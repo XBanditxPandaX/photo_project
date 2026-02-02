@@ -45,15 +45,9 @@ public class PhotoController {
     }
 
     @GetMapping("/{id}/image")
-    public ResponseEntity<byte[]> getPhotoImage(@PathVariable Long id) {
+    public ResponseEntity<String> getPhotoImage(@PathVariable Long id) {
         return photoService.getPhotoById(id)
-                .map(photo -> {
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.setContentType(MediaType.parseMediaType(
-                            photo.getContentType() != null ? photo.getContentType() : "image/jpeg"
-                    ));
-                    return new ResponseEntity<>(photo.getImageData(), headers, HttpStatus.OK);
-                })
+                .map(photo -> ResponseEntity.ok(photo.getImageUrl()))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -61,9 +55,9 @@ public class PhotoController {
     public ResponseEntity<Map<String, Object>> uploadPhoto(
             @RequestParam("title") String title,
             @RequestParam(value = "description", required = false) String description,
-            @RequestParam("image") MultipartFile file) {
+            @RequestParam("image") String url) {
         try {
-            Photo savedPhoto = photoService.savePhoto(title, description, file);
+            Photo savedPhoto = photoService.savePhoto(title, description, url);
             return ResponseEntity.status(HttpStatus.CREATED).body(toMetadataMap(savedPhoto));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -85,7 +79,7 @@ public class PhotoController {
         map.put("title", photo.getTitle());
         map.put("description", photo.getDescription());
         map.put("createdAt", photo.getCreatedAt());
-        map.put("imageUrl", "/api/photos/" + photo.getId() + "/image");
+        map.put("imageUrl", photo.getImageUrl());
         return map;
     }
 }

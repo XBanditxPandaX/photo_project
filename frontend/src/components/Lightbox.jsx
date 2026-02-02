@@ -1,8 +1,17 @@
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import photoService from '../services/photoService';
 
 function Lightbox({ photo, onClose, onNavigate }) {
-  const imageUrl = photoService.getPhotoImageUrl(photo.id);
+    const [imageUrl, setImageUrl] = useState();
+
+    useEffect(() => {
+        void getImageUrl();
+    }, [photo])
+
+    const getImageUrl = async () => {
+        const image = await photoService.getPhotoById(photo.id);
+        setImageUrl(image.imageUrl)
+    }
 
   useEffect(() => {
     const handleKeyDown = (e) => {

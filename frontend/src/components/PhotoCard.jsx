@@ -1,16 +1,30 @@
 import photoService from '../services/photoService';
+import {useEffect, useState} from "react";
 
 function PhotoCard({ photo, onClick }) {
-  const imageUrl = photoService.getPhotoImageUrl(photo.id);
+    const [imageUrl, setImageUrl] = useState();
+
+    useEffect(() => {
+        void getImageUrl();
+    }, [])
+
+    const getImageUrl = async () => {
+        const image = await photoService.getPhotoById(photo.id);
+        setImageUrl(image.imageUrl)
+    }
 
   return (
     <div className="photo-card" onClick={onClick}>
       <div className="photo-card-image">
-        <img
-          src={imageUrl}
-          alt={photo.title}
-          loading="lazy"
-        />
+          {
+              imageUrl
+                  ? <img
+                      src={imageUrl}
+                      alt={photo.title}
+                      loading="lazy"
+                  />
+                  : "Loading..."
+          }
       </div>
       <div className="photo-card-overlay">
         <h3 className="photo-card-title">{photo.title}</h3>
