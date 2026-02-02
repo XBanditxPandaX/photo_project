@@ -1,14 +1,14 @@
 # Step 1: Use an official OpenJDK base image from Docker Hub
-FROM openjdk:12
+FROM --platform=linux/amd64 eclipse-temurin:17
 
 # Step 2: Set the working directory inside the container
 WORKDIR /app
 
 # Step 3: Copy the Spring Boot JAR file into the container
-COPY target/my-spring-boot-app.jar /app/my-spring-boot-app.jar
+COPY target/photo-gallery-1.0.0.jar /app/my-spring-boot-app.jar
 
 
-ENV DATABASE_URL="postgresql://ep-restless-salad-ags4urkz-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+ENV DATABASE_URL="jdbc:postgresql://ep-restless-salad-ags4urkz-pooler.c-2.eu-central-1.aws.neon.tech/neondb"
 ENV PGUSER="neondb_owner"
 ENV PGPASSWORD="npg_h7kpDx5AVWzY"
 
