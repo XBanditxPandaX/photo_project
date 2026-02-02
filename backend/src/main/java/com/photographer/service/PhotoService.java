@@ -2,6 +2,7 @@ package com.photographer.service;
 
 import com.photographer.model.Photo;
 import com.photographer.repository.PhotoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,14 +21,17 @@ public class PhotoService {
         this.photoRepository = photoRepository;
     }
 
+    @Transactional
     public List<Photo> getAllPhotos() {
         return photoRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    @Transactional
     public Optional<Photo> getPhotoById(Long id) {
         return photoRepository.findById(id);
     }
 
+    @Transactional
     public Photo savePhoto(String title, String description, MultipartFile file) throws IOException {
         Photo photo = new Photo(
                 title,
@@ -38,6 +42,7 @@ public class PhotoService {
         return photoRepository.save(photo);
     }
 
+    @Transactional
     public void deletePhoto(Long id) {
         photoRepository.deleteById(id);
     }
