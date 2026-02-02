@@ -1,8 +1,8 @@
-const API_BASE_URL = '/api/photos';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export const photoService = {
   async getAllPhotos() {
-    const response = await fetch(API_BASE_URL);
+    const response = await fetch(API_BASE_URL + "/photos");
     if (!response.ok) {
       throw new Error('Failed to fetch photos');
     }
@@ -10,7 +10,7 @@ export const photoService = {
   },
 
   async getPhotoById(id) {
-    const response = await fetch(`${API_BASE_URL}/${id}`);
+    const response = await fetch(`${API_BASE_URL}/photos/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch photo');
     }
@@ -29,7 +29,7 @@ export const photoService = {
     }
     formData.append('image', imageFile);
 
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch(API_BASE_URL + "/photos", {
       method: 'POST',
       body: formData
     });
@@ -41,7 +41,7 @@ export const photoService = {
   },
 
   async deletePhoto(id) {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/photos/${id}`, {
       method: 'DELETE'
     });
 
