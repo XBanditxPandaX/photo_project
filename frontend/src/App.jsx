@@ -1,4 +1,5 @@
 import Gallery from './components/Gallery';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,11 +13,9 @@ function App() {
         <Gallery />
       </main>
 
-      <footer className="footer">
-        <p>&copy; 2026 - Tous droits reservés</p>
-      </footer>
+      <Footer />
     </div>
   );
-}
+} 
 
 export default App;
