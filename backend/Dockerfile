@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/photo-gallery-1.0.0.jar /app/my-spring-boot-app.jar
 
 
-ENV DATABASE_URL="postgresql://ep-restless-salad-ags4urkz-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+ENV DATABASE_URL="jdbc:postgresql://ep-restless-salad-ags4urkz-pooler.c-2.eu-central-1.aws.neon.tech/neondb"
 ENV PGUSER="neondb_owner"
 ENV PGPASSWORD="npg_h7kpDx5AVWzY"
 
