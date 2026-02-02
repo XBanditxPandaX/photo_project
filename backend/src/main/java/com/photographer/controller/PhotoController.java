@@ -38,14 +38,14 @@ public class PhotoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getPhotoById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getPhotoById(@PathVariable("id") Long id) {
         return photoService.getPhotoById(id)
                 .map(photo -> ResponseEntity.ok(toMetadataMap(photo)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}/image")
-    public ResponseEntity<String> getPhotoImage(@PathVariable Long id) {
+    public ResponseEntity<String> getPhotoImage(@PathVariable("id") Long id) {
         return photoService.getPhotoById(id)
                 .map(photo -> ResponseEntity.ok(photo.getImageUrl()))
                 .orElse(ResponseEntity.notFound().build());
@@ -55,9 +55,10 @@ public class PhotoController {
     public ResponseEntity<Map<String, Object>> uploadPhoto(
             @RequestParam("title") String title,
             @RequestParam(value = "description", required = false) String description,
-            @RequestParam("image") String url) {
+            @RequestParam("image") String url,
+            @RequestParam("category") String category) {
         try {
-            Photo savedPhoto = photoService.savePhoto(title, description, url);
+            Photo savedPhoto = photoService.savePhoto(title, description, url, category);
             return ResponseEntity.status(HttpStatus.CREATED).body(toMetadataMap(savedPhoto));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -65,7 +66,7 @@ public class PhotoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePhoto(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePhoto(@PathVariable("id") Long id) {
         if (photoService.getPhotoById(id).isPresent()) {
             photoService.deletePhoto(id);
             return ResponseEntity.noContent().build();
@@ -80,6 +81,7 @@ public class PhotoController {
         map.put("description", photo.getDescription());
         map.put("createdAt", photo.getCreatedAt());
         map.put("imageUrl", photo.getImageUrl());
+        map.put("category", photo.getCategory());
         return map;
     }
 }
