@@ -36,6 +36,9 @@ public class Photo {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private String category;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

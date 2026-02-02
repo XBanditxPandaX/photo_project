@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PhotoCard from './PhotoCard';
 import Lightbox from './Lightbox';
+import AddPhotoModal from './AddPhotoModal';
 import photoService from '../services/photoService';
 
 function Gallery() {
@@ -8,6 +9,7 @@ function Gallery() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     loadPhotos();
@@ -59,11 +61,26 @@ function Gallery() {
   }
 
   if (photos.length === 0) {
-    return <div className="empty">Aucune photo disponible</div>;
+    return (
+      <div className="gallery-container">
+        <button className="btn-add-photo" onClick={() => setIsModalOpen(true)}>
+          + Ajouter une photo
+        </button>
+        <div className="empty">Aucune photo disponible</div>
+        <AddPhotoModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onPhotoAdded={loadPhotos}
+        />
+      </div>
+    );
   }
 
   return (
     <div className="gallery-container">
+      <button className="btn-add-photo" onClick={() => setIsModalOpen(true)}>
+        + Ajouter une photo
+      </button>
       <div className="gallery-grid">
         {photos.map((photo) => (
           <PhotoCard
@@ -81,6 +98,12 @@ function Gallery() {
           onNavigate={handleNavigate}
         />
       )}
+
+      <AddPhotoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onPhotoAdded={loadPhotos}
+      />
     </div>
   );
 }
