@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { createPortal } from 'react-dom';
 import photoService from '../services/photoService';
 
 function Lightbox({ photo, onClose, onNavigate }) {
@@ -39,7 +40,7 @@ function Lightbox({ photo, onClose, onNavigate }) {
     }
   };
 
-  return (
+  const lightboxContent = (
     <div className="lightbox-backdrop" onClick={handleBackdropClick}>
       <button className="lightbox-close" onClick={onClose}>
         &times;
@@ -72,6 +73,8 @@ function Lightbox({ photo, onClose, onNavigate }) {
       </button>
     </div>
   );
+
+  return createPortal(lightboxContent, document.body);
 }
 
 export default Lightbox;
