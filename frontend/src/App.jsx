@@ -1,3 +1,4 @@
+import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 
 function App() {
@@ -8,12 +9,14 @@ function App() {
         <p>Portfolio du photographe</p>
       </header>
 
-      <main className="main">
+      <Hero />
+
+      <main className="main" id="gallery-section">
         <Gallery />
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 - Tous droits reservés</p>
+        <p>&copy; 2026 - Tous droits reserves</p>
       </footer>
     </div>
   );
