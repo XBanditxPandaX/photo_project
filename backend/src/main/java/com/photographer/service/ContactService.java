@@ -51,7 +51,7 @@ public class ContactService {
                 "sender", Map.of("name", senderName, "email", fromAddress),
                 "to", List.of(Map.of("email", toAddress)),
                 "replyTo", Map.of("email", request.email()),
-                "subject", "Nouveau message de contact - " + request.firstName() + " " + request.lastName(),
+                "subject", "Contact - " + request.subject(),
                 "htmlContent", buildHtmlBody(request)
         );
 
@@ -77,6 +77,7 @@ public class ContactService {
                 + "<p><strong>Prenom:</strong> " + escape(request.firstName()) + "</p>"
                 + "<p><strong>Nom:</strong> " + escape(request.lastName()) + "</p>"
                 + "<p><strong>Email:</strong> " + escape(request.email()) + "</p>"
+                + "<p><strong>Objet:</strong> " + escape(request.subject()) + "</p>"
                 + "<p><strong>Message:</strong><br/>" + escape(request.message()).replace("\n", "<br/>") + "</p>";
     }
 
