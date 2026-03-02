@@ -14,6 +14,9 @@ function App() {
       <header className="header">
         <h1>Galerie Photo</h1>
         <p>Portfolio du photographe</p>
+        <a className="header-contact-link" href="/contact">
+          Aller a la page contact
+        </a>
       </header>
 
       <Hero />
