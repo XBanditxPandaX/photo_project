@@ -43,11 +43,11 @@ function ContactPage() {
 
       <main className="main">
         <section className="contact-panel" aria-labelledby="contact-form-title">
-          <h2 id="contact-form-title" className="contact-title">Formulaire de contact</h2>
+          <h2 id="contact-form-title" className="contact-title">Contactez-moi !</h2>
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="firstName">Prénom</label>
+              <label htmlFor="firstName">Prenom</label>
               <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
             </div>
 
@@ -67,7 +67,7 @@ function ContactPage() {
             </div>
 
             <button type="submit" className="btn-submit contact-submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+              {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
             </button>
           </form>
 
