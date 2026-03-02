@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import contactService from '../services/contactService';
 
 function ContactPage() {
@@ -25,7 +25,7 @@ function ContactPage() {
 
     try {
       await contactService.sendContact(formData);
-      setSuccessMessage('Message envoye avec succes.');
+      setSuccessMessage('Message envoyé avec succès.');
       setFormData({ firstName: '', lastName: '', email: '', message: '' });
     } catch (error) {
       setErrorMessage(error.message);
@@ -43,80 +43,50 @@ function ContactPage() {
 
       <main className="main">
         <section className="contact-panel" aria-labelledby="contact-form-title">
-          <div className="contact-form-block">
-            <h2 id="contact-form-title" className="contact-title">Contactez-moi !</h2>
+          <h2 id="contact-form-title" className="contact-title">Contactez-moi !</h2>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="firstName">Prenom</label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="firstName">Prenom</label>
+              <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="lastName">Nom</label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="lastName">Nom</label>
+              <input id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleChange} required />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Mail</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="email">Mail</label>
+              <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="8"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows="6" value={formData.message} onChange={handleChange} required />
+            </div>
 
-              <button type="submit" className="btn-submit contact-submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
-              </button>
-            </form>
+            <button type="submit" className="btn-submit contact-submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+            </button>
+          </form>
 
-            {successMessage && (
-              <p className="contact-success" role="status">
-                {successMessage}
-              </p>
-            )}
+          {successMessage && (
+            <p className="contact-success" role="status">
+              {successMessage}
+            </p>
+          )}
 
-            {errorMessage && (
-              <p className="contact-error" role="alert">
-                {errorMessage}
-              </p>
-            )}
-          </div>
+          {errorMessage && (
+            <p className="contact-error" role="alert">
+              {errorMessage}
+            </p>
+          )}
         </section>
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 - Tous droits reserves</p>
+        <p>&copy; 2026 - Tous droits réservés</p>
       </footer>
     </div>
   );
