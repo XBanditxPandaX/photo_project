@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import contactService from '../services/contactService';
+import { useNavigate } from 'react-router';
 
 function ContactPage() {
   const [contrast, setContrast] = useState(() => Number(localStorage.getItem('contrastLevel')) || 100);
   const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -50,6 +52,9 @@ function ContactPage() {
         <header className="header">
           <h1>Contact</h1>
           <p>Envoyer un message</p>
+          <button type="button" className="header-contact-link" onClick={() => navigate('/')}>
+          Retour au menu
+        </button>
         </header>
 
       <main className="main">
