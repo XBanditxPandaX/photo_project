@@ -17,9 +17,9 @@ function Hero() {
           <div className="hero-overlay">
             <h2 className="hero-name">Jean Dupont</h2>
             <p className="hero-title">Photographe</p>
-            <p className="hero-quote">"Capturer l'instant, figer l'emotion."</p>
+            <p className="hero-quote">"Capturer l'instant, figer l'émotion."</p>
             <button className="btn-scroll-gallery" onClick={scrollToGallery}>
-              Decouvrir
+              Découvrir
             </button>
           </div>
         </div>

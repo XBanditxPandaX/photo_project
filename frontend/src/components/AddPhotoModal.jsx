@@ -65,7 +65,7 @@ function AddPhotoModal({ isOpen, onClose, onPhotoAdded }) {
 
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
-            <label htmlFor="category">Categorie</label>
+            <label htmlFor="category">Catégorie</label>
             <select
               id="category"
               name="category"
