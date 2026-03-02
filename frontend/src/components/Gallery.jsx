@@ -6,9 +6,21 @@ import AddPhotoModal from './AddPhotoModal';
 import photoService from '../services/photoService';
 
 const CATEGORIES = {
-  portrait: 'Portraits',
-  mariage: 'Mariages'
+  portrait: {
+    name: 'Portraits',
+    subtitle: 'Des visages qui racontent une stratégie émotionnelle'
+  },
+  mariage: {
+    name: 'Mariages',
+    subtitle: 'Des instants sincères cadrés comme des souvenirs premium'
+  }
 };
+
+const BULLSHIT_PHRASES = [
+  'Chaque image optimise l’authenticité perçue en temps réel.',
+  'Ici, la lumière devient un levier narratif à haute valeur émotionnelle.',
+  'Le cadrage transforme vos moments en expérience visuelle scalable.'
+];
 
 function Gallery() {
   const [photos, setPhotos] = useState([]);
@@ -93,21 +105,32 @@ function Gallery() {
         + Ajouter une photo
       </button>
 
+      <section className="vibe-board">
+        <p className="vibe-intro">Notre manifeste créatif du moment</p>
+        <div className="vibe-grid">
+          {BULLSHIT_PHRASES.map((phrase) => (
+            <p key={phrase} className="vibe-pill">{phrase}</p>
+          ))}
+        </div>
+      </section>
+
       {photos.length === 0 ? (
         <div className="empty">Aucune photo disponible</div>
       ) : selectedCategory ? (
         <CategoryView
-          title={CATEGORIES[selectedCategory]}
+          title={CATEGORIES[selectedCategory].name}
+          subtitle={CATEGORIES[selectedCategory].subtitle}
           photos={photosByCategory[selectedCategory]}
           onPhotoClick={handlePhotoClick}
           onBack={handleBackToCarousels}
         />
       ) : (
         <div className="carousels-container">
-          {Object.entries(CATEGORIES).map(([categoryKey, categoryTitle]) => (
+          {Object.entries(CATEGORIES).map(([categoryKey, categoryData]) => (
             <Carousel
               key={categoryKey}
-              title={categoryTitle}
+              title={categoryData.name}
+              subtitle={categoryData.subtitle}
               photos={photosByCategory[categoryKey]}
               onPhotoClick={handlePhotoClick}
               onViewMore={() => handleViewMore(categoryKey)}
