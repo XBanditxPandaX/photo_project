@@ -934,3 +934,65 @@ body::after {
     max-width: 95vw;
   }
 }
+
+.contact-panel {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 1.2rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--shadow-soft);
+  animation: fade-up 0.5s ease both;
+}
+
+.contact-title {
+  margin: 0 0 1.2rem;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  color: var(--text-primary);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-submit {
+  width: fit-content;
+  min-width: 210px;
+  padding: 0.76rem 1.15rem;
+}
+
+.contact-success {
+  margin-top: 1rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid #bde0d7;
+  background: #eaf9f5;
+  color: #176756;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.contact-error {
+  margin-top: 1rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid #f4c0c0;
+  background: #ffe8e8;
+  color: var(--danger);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 768px) {
+  .contact-panel {
+    padding: 1rem;
+  }
+
+  .contact-submit {
+    width: 100%;
+  }
+}
