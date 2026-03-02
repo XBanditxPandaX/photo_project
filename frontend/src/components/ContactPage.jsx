@@ -25,7 +25,7 @@ function ContactPage() {
 
     try {
       await contactService.sendContact(formData);
-      setSuccessMessage('Message envoyé avec succès.');
+      setSuccessMessage('Message envoyÃ© avec succÃ¨s.');
       setFormData({ firstName: '', lastName: '', email: '', message: '' });
     } catch (error) {
       setErrorMessage(error.message);
@@ -47,7 +47,7 @@ function ContactPage() {
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="firstName">Prénom</label>
+              <label htmlFor="firstName">PrÃ©nom</label>
               <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
             </div>
 
@@ -86,7 +86,7 @@ function ContactPage() {
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 - Tous droits réservés</p>
+        <p>&copy; 2026 - Tous droits rÃ©servÃ©s</p>
       </footer>
     </div>
   );
