@@ -9,7 +9,7 @@ function CategoryView({ title, photos, onPhotoClick, onBack }) {
       </div>
 
       {photos.length === 0 ? (
-        <div className="empty">Aucune photo dans cette categorie</div>
+        <div className="empty">Aucune photo dans cette catégorie</div>
       ) : (
         <div className="category-grid">
           {photos.map((photo) => (
