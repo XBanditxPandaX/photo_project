@@ -6,6 +6,7 @@ function ContactPage() {
     firstName: '',
     lastName: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,7 +27,7 @@ function ContactPage() {
     try {
       await contactService.sendContact(formData);
       setSuccessMessage('Message envoyé avec succès.');
-      setFormData({ firstName: '', lastName: '', email: '', message: '' });
+      setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
@@ -59,6 +60,11 @@ function ContactPage() {
             <div className="form-group">
               <label htmlFor="email">Mail</label>
               <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="subject">Objet</label>
+              <input id="subject" name="subject" type="text" value={formData.subject} onChange={handleChange} required />
             </div>
 
             <div className="form-group">

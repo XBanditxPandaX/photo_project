@@ -27,7 +27,11 @@ public class ContactController {
 
     @PostMapping
     public ResponseEntity<Map<String, String>> sendContact(@RequestBody ContactRequest request) {
-        if (isBlank(request.firstName()) || isBlank(request.lastName()) || isBlank(request.email()) || isBlank(request.message())) {
+        if (isBlank(request.firstName())
+                || isBlank(request.lastName())
+                || isBlank(request.email())
+                || isBlank(request.subject())
+                || isBlank(request.message())) {
             return ResponseEntity.badRequest().body(Map.of("error", "Tous les champs sont obligatoires."));
         }
 
