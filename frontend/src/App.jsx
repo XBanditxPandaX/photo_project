@@ -1,7 +1,14 @@
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
+import ContactPage from './components/ContactPage';
 
 function App() {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  if (normalizedPath === '/contact') {
+    return <ContactPage />;
+  }
+
   return (
     <div className="app">
       <header className="header">
