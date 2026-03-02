@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-function Carousel({ title, photos, onPhotoClick, onViewMore }) {
+function Carousel({ title, subtitle, photos, onPhotoClick, onViewMore }) {
   const carouselRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -29,7 +29,10 @@ function Carousel({ title, photos, onPhotoClick, onViewMore }) {
   return (
     <div className="carousel-section">
       <div className="carousel-header">
-        <h2 className="carousel-title">{title}</h2>
+        <div className="carousel-title-wrap">
+          <h2 className="carousel-title">{title}</h2>
+          <p className="carousel-subtitle">{subtitle}</p>
+        </div>
         <button className="btn-view-more" onClick={onViewMore}>
           Voir plus
         </button>

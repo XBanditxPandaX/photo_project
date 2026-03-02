@@ -1,11 +1,14 @@
-function CategoryView({ title, photos, onPhotoClick, onBack }) {
+function CategoryView({ title, subtitle, photos, onPhotoClick, onBack }) {
   return (
     <div className="category-view">
       <div className="category-view-header">
         <button className="btn-back" onClick={onBack}>
           &#8592; Retour
         </button>
-        <h2 className="category-view-title">{title}</h2>
+        <div className="category-heading">
+          <h2 className="category-view-title">{title}</h2>
+          <p className="category-subtitle">{subtitle}</p>
+        </div>
       </div>
 
       {photos.length === 0 ? (
