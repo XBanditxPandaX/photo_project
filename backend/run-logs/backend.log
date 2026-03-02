@@ -12,10 +12,18 @@
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ photo-gallery ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module! :input tree
+[INFO] Compiling 10 source files with javac [debug release 17] to target\classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ photo-gallery ---
-[INFO] skip non existing resourceDirectory E:\ac\photo_project\backend\src\test\resources
+[INFO] skip non existing resourceDirectory e:\ac\photo_project\backend\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ photo-gallery ---
 [INFO] No sources to compile
@@ -34,44 +42,44 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2026-03-02T10:28:57.915+01:00  INFO 12848 --- [           main] com.photographer.PhotoApplication        : Starting PhotoApplication using Java 21.0.1 with PID 12848 (E:\ac\photo_project\backend\target\classes started by user in E:\ac\photo_project\backend)
-2026-03-02T10:28:57.915+01:00  INFO 12848 --- [           main] com.photographer.PhotoApplication        : No active profile set, falling back to 1 default profile: "default"
-2026-03-02T10:28:57.915+01:00 DEBUG 12848 --- [           main] o.s.boot.SpringApplication               : Loading source class com.photographer.PhotoApplication
-2026-03-02T10:28:57.997+01:00 DEBUG 12848 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4816278d
-2026-03-02T10:28:59.155+01:00  INFO 12848 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-02T10:28:59.181+01:00 DEBUG 12848 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.photographer'. Automatic @Repository and @Entity scanning is enabled.
-2026-03-02T10:28:59.228+01:00  INFO 12848 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 1 JPA repository interface.
-2026-03-02T10:29:00.117+01:00 DEBUG 12848 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: C:\Users\user\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar
-2026-03-02T10:29:00.118+01:00 DEBUG 12848 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: C:\Users\user\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar
-2026-03-02T10:29:00.118+01:00 DEBUG 12848 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
-2026-03-02T10:29:00.151+01:00  INFO 12848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-03-02T10:29:00.178+01:00  INFO 12848 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-02T10:29:00.179+01:00  INFO 12848 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2026-03-02T10:29:00.284+01:00  INFO 12848 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-03-02T10:29:00.284+01:00 DEBUG 12848 --- [           main] w.s.c.ServletWebServerApplicationContext : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2026-03-02T10:29:00.284+01:00  INFO 12848 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2287 ms
-2026-03-02T10:29:00.300+01:00 DEBUG 12848 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2026-03-02T10:29:00.300+01:00 DEBUG 12848 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
-2026-03-02T10:29:00.332+01:00 DEBUG 12848 --- [           main] o.s.b.w.s.f.OrderedRequestContextFilter  : Filter 'requestContextFilter' configured for use
-2026-03-02T10:29:00.332+01:00 DEBUG 12848 --- [           main] s.b.w.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
-2026-03-02T10:29:00.332+01:00 DEBUG 12848 --- [           main] o.s.b.w.s.f.OrderedFormContentFilter     : Filter 'formContentFilter' configured for use
-2026-03-02T10:29:00.398+01:00  INFO 12848 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-03-02T10:29:00.681+01:00  INFO 12848 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f353a0f
-2026-03-02T10:29:00.683+01:00  INFO 12848 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-03-02T10:29:00.820+01:00  INFO 12848 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-03-02T10:29:00.922+01:00  INFO 12848 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2026-03-02T10:29:00.971+01:00  INFO 12848 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-03-02T10:29:01.275+01:00  INFO 12848 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-02T10:29:01.354+01:00  WARN 12848 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-03-02T10:29:02.221+01:00  INFO 12848 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-02T10:29:02.292+01:00  INFO 12848 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-02T10:29:02.686+01:00  WARN 12848 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-02T10:29:02.796+01:00 DEBUG 12848 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
-2026-03-02T10:29:02.868+01:00 DEBUG 12848 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2026-03-02T10:29:02.893+01:00 DEBUG 12848 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2026-03-02T10:29:02.918+01:00 DEBUG 12848 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2026-03-02T10:29:03.045+01:00  INFO 12848 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-03-02T10:29:03.049+01:00 DEBUG 12848 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-03-02T12:47:19.855+01:00  INFO 2128 --- [           main] com.photographer.PhotoApplication        : Starting PhotoApplication using Java 21.0.1 with PID 2128 (E:\ac\photo_project\backend\target\classes started by user in e:\ac\photo_project\backend)
+2026-03-02T12:47:19.864+01:00  INFO 2128 --- [           main] com.photographer.PhotoApplication        : No active profile set, falling back to 1 default profile: "default"
+2026-03-02T12:47:19.864+01:00 DEBUG 2128 --- [           main] o.s.boot.SpringApplication               : Loading source class com.photographer.PhotoApplication
+2026-03-02T12:47:19.921+01:00 DEBUG 2128 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@16b2bb0c
+2026-03-02T12:47:20.614+01:00  INFO 2128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-02T12:47:20.631+01:00 DEBUG 2128 --- [           main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the package 'com.photographer'. Automatic @Repository and @Entity scanning is enabled.
+2026-03-02T12:47:20.672+01:00  INFO 2128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 1 JPA repository interface.
+2026-03-02T12:47:21.282+01:00 DEBUG 2128 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: C:\Users\user\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar
+2026-03-02T12:47:21.282+01:00 DEBUG 2128 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : Code archive: C:\Users\user\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar
+2026-03-02T12:47:21.282+01:00 DEBUG 2128 --- [           main] .s.b.w.e.t.TomcatServletWebServerFactory : None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.
+2026-03-02T12:47:21.307+01:00  INFO 2128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-02T12:47:21.324+01:00  INFO 2128 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-02T12:47:21.324+01:00  INFO 2128 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-03-02T12:47:21.421+01:00  INFO 2128 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-02T12:47:21.421+01:00 DEBUG 2128 --- [           main] w.s.c.ServletWebServerApplicationContext : Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2026-03-02T12:47:21.421+01:00  INFO 2128 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1500 ms
+2026-03-02T12:47:21.437+01:00 DEBUG 2128 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2026-03-02T12:47:21.437+01:00 DEBUG 2128 --- [           main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2026-03-02T12:47:21.471+01:00 DEBUG 2128 --- [           main] o.s.b.w.s.f.OrderedRequestContextFilter  : Filter 'requestContextFilter' configured for use
+2026-03-02T12:47:21.474+01:00 DEBUG 2128 --- [           main] s.b.w.s.f.OrderedCharacterEncodingFilter : Filter 'characterEncodingFilter' configured for use
+2026-03-02T12:47:21.474+01:00 DEBUG 2128 --- [           main] o.s.b.w.s.f.OrderedFormContentFilter     : Filter 'formContentFilter' configured for use
+2026-03-02T12:47:21.525+01:00  INFO 2128 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-02T12:47:21.857+01:00  INFO 2128 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@217c23ce
+2026-03-02T12:47:21.859+01:00  INFO 2128 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-02T12:47:21.979+01:00  INFO 2128 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-02T12:47:22.055+01:00  INFO 2128 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-03-02T12:47:22.105+01:00  INFO 2128 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-02T12:47:22.413+01:00  INFO 2128 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-02T12:47:22.498+01:00  WARN 2128 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-02T12:47:24.153+01:00  INFO 2128 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-02T12:47:24.378+01:00  INFO 2128 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-02T12:47:25.105+01:00  WARN 2128 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-02T12:47:25.335+01:00 DEBUG 2128 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2026-03-02T12:47:25.459+01:00 DEBUG 2128 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-03-02T12:47:25.505+01:00 DEBUG 2128 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-03-02T12:47:25.544+01:00 DEBUG 2128 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-03-02T12:47:25.725+01:00  INFO 2128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-02T12:47:25.750+01:00 DEBUG 2128 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 
 ============================
@@ -282,17 +290,6 @@ Positive matches:
 
    LifecycleAutoConfiguration#defaultLifecycleProcessor matched:
       - @ConditionalOnMissingBean (names: lifecycleProcessor; SearchStrategy: current) did not find any beans (OnBeanCondition)
-
-   MailSenderAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'jakarta.mail.internet.MimeMessage', 'jakarta.activation.MimeType', 'org.springframework.mail.MailSender' (OnClassCondition)
-      - AnyNestedCondition 1 matched 1 did not; NestedCondition on MailSenderAutoConfiguration.MailSenderCondition.JndiNameProperty @ConditionalOnProperty (spring.mail.jndi-name) did not find property 'jndi-name'; NestedCondition on MailSenderAutoConfiguration.MailSenderCondition.HostProperty @ConditionalOnProperty (spring.mail.host) matched (MailSenderAutoConfiguration.MailSenderCondition)
-      - @ConditionalOnMissingBean (types: org.springframework.mail.MailSender; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   MailSenderPropertiesConfiguration matched:
-      - @ConditionalOnProperty (spring.mail.host) matched (OnPropertyCondition)
-
-   MailSenderPropertiesConfiguration#mailSender matched:
-      - @ConditionalOnMissingBean (types: org.springframework.mail.javamail.JavaMailSender; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
    MultipartAutoConfiguration matched:
       - @ConditionalOnClass found required classes 'jakarta.servlet.Servlet', 'org.springframework.web.multipart.support.StandardServletMultipartResolver', 'jakarta.servlet.MultipartConfigElement' (OnClassCondition)
@@ -820,15 +817,13 @@ Negative matches:
       Did not match:
          - @ConditionalOnClass did not find required class 'liquibase.change.DatabaseChange' (OnClassCondition)
 
-   MailSenderJndiConfiguration:
+   MailSenderAutoConfiguration:
       Did not match:
-         - @ConditionalOnProperty (spring.mail.jndi-name) did not find property 'jndi-name' (OnPropertyCondition)
-      Matched:
-         - @ConditionalOnClass found required class 'jakarta.mail.Session' (OnClassCondition)
+         - @ConditionalOnClass did not find required class 'jakarta.mail.internet.MimeMessage' (OnClassCondition)
 
    MailSenderValidatorAutoConfiguration:
       Did not match:
-         - @ConditionalOnProperty (spring.mail.test-connection) did not find property 'test-connection' (OnPropertyCondition)
+         - @ConditionalOnSingleCandidate did not find required type 'org.springframework.mail.javamail.JavaMailSenderImpl' (OnBeanCondition)
 
    MessageSourceAutoConfiguration:
       Did not match:
@@ -1188,6 +1183,98 @@ Unconditional classes:
 
 
 
-2026-03-02T10:29:03.049+01:00  INFO 12848 --- [           main] com.photographer.PhotoApplication        : Started PhotoApplication in 5.649 seconds (process running for 6.111)
-2026-03-02T10:29:03.049+01:00 DEBUG 12848 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
-2026-03-02T10:29:03.065+01:00 DEBUG 12848 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-03-02T12:47:25.759+01:00  INFO 2128 --- [           main] com.photographer.PhotoApplication        : Started PhotoApplication in 6.469 seconds (process running for 6.955)
+2026-03-02T12:47:25.759+01:00 DEBUG 2128 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2026-03-02T12:47:25.759+01:00 DEBUG 2128 --- [           main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2026-03-02T12:47:47.320+01:00  INFO 2128 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-02T12:47:47.320+01:00  INFO 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@74f92d14
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5186c801
+2026-03-02T12:47:47.328+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-03-02T12:47:47.328+01:00  INFO 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2026-03-02T12:47:47.336+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/api/contact", parameters={}
+2026-03-02T12:47:47.343+01:00 DEBUG 2128 --- [nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.photographer.controller.ContactController#sendContact(ContactRequest)
+2026-03-02T12:47:47.410+01:00 DEBUG 2128 --- [nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [ContactRequest[firstName=ETIENNE, lastName=BAILLIEUX, email=etienne.baillie@gmail.com, message=test  (truncated)...]
+2026-03-02T12:47:47.562+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.client.RestTemplate              : HTTP POST https://api.brevo.com/v3/smtp/email
+2026-03-02T12:47:47.570+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2026-03-02T12:47:47.578+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.client.RestTemplate              : Writing [{htmlContent=<h2>Nouveau message de contact</h2><p><strong>Prenom:</strong> ETIENNE</p><p><strong>Nom:</strong> BAILLIEUX</p><p><strong>Email:</strong> etienne.baillie@gmail.com</p><p><strong>Message:</strong><br/>test branch switch</p>, sender={name=Photo Project , email=johnporkgaming667@gmail.com }, to=[{email=johnporkgaming667@gmail.com }], replyTo={email=etienne.baillie@gmail.com}, subject=Nouveau message de contact - ETIENNE BAILLIEUX}] as "application/json"
+2026-03-02T12:47:48.068+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.client.RestTemplate              : Response 201 CREATED
+2026-03-02T12:47:48.068+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+2026-03-02T12:47:48.076+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-03-02T12:47:48.076+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{message=Message envoye avec succes.}]
+2026-03-02T12:47:48.086+01:00 DEBUG 2128 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-03-02T12:49:17.087+01:00 DEBUG 2128 --- [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/photos", parameters={}
+2026-03-02T12:49:17.088+01:00 DEBUG 2128 --- [nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.photographer.controller.PhotoController#getAllPhotos()
+2026-03-02T12:49:17.379+01:00 DEBUG 2128 --- [nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.title 
+    from
+        photos p1_0 
+    order by
+        p1_0.created_at desc
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.title 
+    from
+        photos p1_0 
+    order by
+        p1_0.created_at desc
+2026-03-02T12:49:17.453+01:00 DEBUG 2128 --- [nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-03-02T12:49:17.453+01:00 DEBUG 2128 --- [nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[{createdAt=2026-01-28T10:38:49.114432, imageUrl=null, description=Une belle photo, id=2, title=Ma P (truncated)...]
+2026-03-02T12:49:17.466+01:00 DEBUG 2128 --- [nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-03-02T12:49:17.466+01:00 DEBUG 2128 --- [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/photos", parameters={}
+2026-03-02T12:49:17.469+01:00 DEBUG 2128 --- [nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.photographer.controller.PhotoController#getAllPhotos()
+2026-03-02T12:49:17.471+01:00 DEBUG 2128 --- [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.title 
+    from
+        photos p1_0 
+    order by
+        p1_0.created_at desc
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.title 
+    from
+        photos p1_0 
+    order by
+        p1_0.created_at desc
+2026-03-02T12:49:17.483+01:00 DEBUG 2128 --- [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-03-02T12:49:17.483+01:00 DEBUG 2128 --- [nio-8080-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[{createdAt=2026-01-28T10:38:49.114432, imageUrl=null, description=Une belle photo, id=2, title=Ma P (truncated)...]
+2026-03-02T12:49:17.486+01:00 DEBUG 2128 --- [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-03-02T12:50:37.589+01:00 DEBUG 2128 --- [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : OPTIONS "/api/contact", parameters={}
+2026-03-02T12:50:37.589+01:00 DEBUG 2128 --- [nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.photographer.controller.ContactController#sendContact(ContactRequest)
+2026-03-02T12:50:37.589+01:00 DEBUG 2128 --- [nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/api/contact", parameters={}
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.photographer.controller.ContactController#sendContact(ContactRequest)
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [ContactRequest[firstName=ETIENNE, lastName=BAILLIEUX, email=etienne.baillie@gmail.com, message=test1 (truncated)...]
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.client.RestTemplate              : HTTP POST https://api.brevo.com/v3/smtp/email
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.client.RestTemplate              : Accept=[text/plain, application/json, application/*+json, */*]
+2026-03-02T12:50:37.611+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.client.RestTemplate              : Writing [{htmlContent=<h2>Nouveau message de contact</h2><p><strong>Prenom:</strong> ETIENNE</p><p><strong>Nom:</strong> BAILLIEUX</p><p><strong>Email:</strong> etienne.baillie@gmail.com</p><p><strong>Message:</strong><br/>test1234</p>, sender={name=Photo Project , email=johnporkgaming667@gmail.com }, to=[{email=johnporkgaming667@gmail.com }], replyTo={email=etienne.baillie@gmail.com}, subject=Nouveau message de contact - ETIENNE BAILLIEUX}] as "application/json"
+2026-03-02T12:50:37.859+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.client.RestTemplate              : Response 201 CREATED
+2026-03-02T12:50:37.859+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.client.RestTemplate              : Reading to [java.lang.String] as "application/json"
+2026-03-02T12:50:37.859+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-03-02T12:50:37.859+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{message=Message envoye avec succes.}]
+2026-03-02T12:50:37.868+01:00 DEBUG 2128 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
