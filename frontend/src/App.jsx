@@ -3,17 +3,42 @@ import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import {useNavigate} from "react-router";
 
+const CONTRAST_STORAGE_KEY = 'contrastLevel';
+const DARK_MODE_STORAGE_KEY = 'darkModeEnabled';
+
+const getInitialContrast = () => {
+  const stored = Number(localStorage.getItem(CONTRAST_STORAGE_KEY));
+  return Number.isFinite(stored) && stored >= 70 && stored <= 130 ? stored : 100;
+};
+
+const getInitialDarkMode = () => {
+  const stored = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+  if (stored === 'true') {
+    return true;
+  }
+  if (stored === 'false') {
+    return false;
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 function App() {
     const navigate=  useNavigate();
-    const [contrast, setContrast] = useState(() => Number(localStorage.getItem('contrastLevel')) || 100);
+    const [contrast, setContrast] = useState(getInitialContrast);
+    const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode);
     const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
 
     useEffect(() => {
       const level = contrast / 100;
       document.documentElement.style.setProperty('--contrast-level', level);
       document.documentElement.style.setProperty('--brightness-level', level);
-      localStorage.setItem('contrastLevel', String(contrast));
+      localStorage.setItem(CONTRAST_STORAGE_KEY, String(contrast));
     }, [contrast]);
+
+    useEffect(() => {
+      document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
+      localStorage.setItem(DARK_MODE_STORAGE_KEY, String(isDarkMode));
+    }, [isDarkMode]);
 
   return (
     <>
@@ -48,9 +73,18 @@ function App() {
         </button>
         {isAccessibilityOpen && (
           <div className="accessibility-panel" role="dialog" aria-label="Parametres d'accessibilite">
-            <div className="accessibility-labels">
-              <span>Sombre</span>
-              <span>Clair</span>
+            <div className="accessibility-toggle">
+              <span>Mode sombre</span>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={isDarkMode}
+                aria-label="Activer ou desactiver le mode sombre"
+                className={`accessibility-switch${isDarkMode ? ' is-on' : ''}`}
+                onClick={() => setIsDarkMode((prev) => !prev)}
+              >
+                <span className="accessibility-switch-thumb" />
+              </button>
             </div>
             <label className="accessibility-slider">
               <span>Contraste</span>

@@ -2,8 +2,28 @@ import { useEffect, useState } from 'react';
 import contactService from '../services/contactService';
 import { useNavigate } from 'react-router';
 
+const CONTRAST_STORAGE_KEY = 'contrastLevel';
+const DARK_MODE_STORAGE_KEY = 'darkModeEnabled';
+
+const getInitialContrast = () => {
+  const stored = Number(localStorage.getItem(CONTRAST_STORAGE_KEY));
+  return Number.isFinite(stored) && stored >= 70 && stored <= 130 ? stored : 100;
+};
+
+const getInitialDarkMode = () => {
+  const stored = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+  if (stored === 'true') {
+    return true;
+  }
+  if (stored === 'false') {
+    return false;
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 function ContactPage() {
-  const [contrast, setContrast] = useState(() => Number(localStorage.getItem('contrastLevel')) || 100);
+  const [contrast, setContrast] = useState(getInitialContrast);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode);
   const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -43,8 +63,13 @@ function ContactPage() {
     const level = contrast / 100;
     document.documentElement.style.setProperty('--contrast-level', level);
     document.documentElement.style.setProperty('--brightness-level', level);
-    localStorage.setItem('contrastLevel', String(contrast));
+    localStorage.setItem(CONTRAST_STORAGE_KEY, String(contrast));
   }, [contrast]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
+    localStorage.setItem(DARK_MODE_STORAGE_KEY, String(isDarkMode));
+  }, [isDarkMode]);
 
   return (
     <>
@@ -53,58 +78,58 @@ function ContactPage() {
           <h1>Contact</h1>
           <p>Envoyer un message</p>
           <button type="button" className="header-contact-link" onClick={() => navigate('/')}>
-          Retour au menu
-        </button>
+            Retour au menu
+          </button>
         </header>
 
-      <main className="main">
-        <section className="contact-panel" aria-labelledby="contact-form-title">
-          <h2 id="contact-form-title" className="contact-title">Contactez-moi !</h2>
+        <main className="main">
+          <section className="contact-panel" aria-labelledby="contact-form-title">
+            <h2 id="contact-form-title" className="contact-title">Contactez-moi !</h2>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="firstName">Prenom</label>
-              <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
-            </div>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="firstName">Prenom</label>
+                <input id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleChange} required />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="lastName">Nom</label>
-              <input id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleChange} required />
-            </div>
+              <div className="form-group">
+                <label htmlFor="lastName">Nom</label>
+                <input id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleChange} required />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Mail</label>
-              <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
-            </div>
+              <div className="form-group">
+                <label htmlFor="email">Mail</label>
+                <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="subject">Objet</label>
-              <input id="subject" name="subject" type="text" value={formData.subject} onChange={handleChange} required />
-            </div>
+              <div className="form-group">
+                <label htmlFor="subject">Objet</label>
+                <input id="subject" name="subject" type="text" value={formData.subject} onChange={handleChange} required />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="6" value={formData.message} onChange={handleChange} required />
-            </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message" rows="6" value={formData.message} onChange={handleChange} required />
+              </div>
 
-            <button type="submit" className="btn-submit contact-submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
-            </button>
-          </form>
+              <button type="submit" className="btn-submit contact-submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+              </button>
+            </form>
 
-          {successMessage && (
-            <p className="contact-success" role="status">
-              {successMessage}
-            </p>
-          )}
+            {successMessage && (
+              <p className="contact-success" role="status">
+                {successMessage}
+              </p>
+            )}
 
-          {errorMessage && (
-            <p className="contact-error" role="alert">
-              {errorMessage}
-            </p>
-          )}
-        </section>
-      </main>
+            {errorMessage && (
+              <p className="contact-error" role="alert">
+                {errorMessage}
+              </p>
+            )}
+          </section>
+        </main>
 
         <footer className="footer">
           <p>&copy; 2026 - Tous droits réservés</p>
@@ -122,9 +147,18 @@ function ContactPage() {
         </button>
         {isAccessibilityOpen && (
           <div className="accessibility-panel" role="dialog" aria-label="Parametres d'accessibilite">
-            <div className="accessibility-labels">
-              <span>Sombre</span>
-              <span>Clair</span>
+            <div className="accessibility-toggle">
+              <span>Mode sombre</span>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={isDarkMode}
+                aria-label="Activer ou desactiver le mode sombre"
+                className={`accessibility-switch${isDarkMode ? ' is-on' : ''}`}
+                onClick={() => setIsDarkMode((prev) => !prev)}
+              >
+                <span className="accessibility-switch-thumb" />
+              </button>
             </div>
             <label className="accessibility-slider">
               <span>Contraste</span>
