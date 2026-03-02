@@ -1,20 +1,17 @@
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import ContactPage from './components/ContactPage';
+import {useNavigate} from "react-router";
 
 function App() {
-  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
-
-  if (normalizedPath === '/contact') {
-    return <ContactPage />;
-  }
+    const navigate=  useNavigate();
 
   return (
     <div className="app">
       <header className="header">
         <h1>Galerie Photo</h1>
         <p>Portfolio du photographe</p>
-        <a className="header-contact-link" href="/contact">
+        <a className="header-contact-link" onClick={() => navigate("/contact")}>
           Aller a la page contact
         </a>
       </header>
