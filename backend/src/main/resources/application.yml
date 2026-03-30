@@ -31,6 +31,13 @@ brevo:
     url: ${BREVO_API_URL:https://api.brevo.com/v3/smtp/email}
     key: ${BREVO_API_KEY:}
 
+app:
+  admin:
+    emails: ${APP_ADMIN_EMAILS:etienne.baillieux@lacatholille.fr,admin@photo-project.local}
+  default-admin:
+    email: ${APP_DEFAULT_ADMIN_EMAIL:admin@photo-project.local}
+    password: ${APP_DEFAULT_ADMIN_PASSWORD:admin}
+
 jwt:
   secret: ${JWT_SECRET:cGhvdG9wcm9qZWN0LXNlY3JldC1rZXktMjAyNC12ZXJ5LWxvbmctc3RyaW5nLWZvci1zZWN1cml0eQ==}
   expiration: 86400000

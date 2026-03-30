@@ -18,13 +18,16 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final AdminAccessService adminAccessService;
 
     public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       JwtService jwtService, AuthenticationManager authenticationManager) {
+                       JwtService jwtService, AuthenticationManager authenticationManager,
+                       AdminAccessService adminAccessService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+        this.adminAccessService = adminAccessService;
     }
 
     public AuthResponse register(RegisterRequest request) {
@@ -39,7 +42,7 @@ public class AuthService {
 
         userRepository.save(user);
         String token = jwtService.generateToken(user);
-        return new AuthResponse(token, user.getEmail());
+        return new AuthResponse(token, user.getEmail(), adminAccessService.isAdminEmail(user.getEmail()));
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -51,6 +54,6 @@ public class AuthService {
                 .orElseThrow(() -> new IllegalArgumentException("Utilisateur introuvable."));
 
         String token = jwtService.generateToken(user);
-        return new AuthResponse(token, user.getEmail());
+        return new AuthResponse(token, user.getEmail(), adminAccessService.isAdminEmail(user.getEmail()));
     }
 }

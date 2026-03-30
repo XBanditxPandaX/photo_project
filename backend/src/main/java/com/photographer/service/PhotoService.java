@@ -5,9 +5,6 @@ import com.photographer.repository.PhotoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +29,7 @@ public class PhotoService {
     }
 
     @Transactional
-    public Photo savePhoto(String title, String description, String url, String category) throws IOException {
+    public Photo savePhoto(String title, String description, String url, String category) {
         Photo photo = Photo.builder()
                 .title(title)
                 .description(description)
@@ -40,6 +37,18 @@ public class PhotoService {
                 .category(category)
                 .build();
         return photoRepository.save(photo);
+    }
+
+    @Transactional
+    public Optional<Photo> updatePhoto(Long id, String title, String description, String url, String category) {
+        return photoRepository.findById(id)
+                .map(photo -> {
+                    photo.setTitle(title);
+                    photo.setDescription(description);
+                    photo.setImageUrl(url);
+                    photo.setCategory(category);
+                    return photoRepository.save(photo);
+                });
     }
 
     @Transactional

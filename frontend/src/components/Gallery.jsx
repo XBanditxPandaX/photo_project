@@ -2,8 +2,9 @@ import { useState, useEffect, useMemo } from 'react';
 import Carousel from './Carousel';
 import CategoryView from './CategoryView';
 import Lightbox from './Lightbox';
-import AddPhotoModal from './AddPhotoModal';
 import photoService from '../services/photoService';
+import { isAdmin } from '../services/authService';
+import { useNavigate } from 'react-router';
 
 const CATEGORIES = {
   portrait: {
@@ -23,11 +24,11 @@ const BULLSHIT_PHRASES = [
 ];
 
 function Gallery() {
+  const navigate = useNavigate();
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
@@ -101,9 +102,11 @@ function Gallery() {
 
   return (
     <div className="gallery-container">
-      <button className="btn-add-photo" onClick={() => setIsModalOpen(true)}>
-        + Ajouter une photo
-      </button>
+      {isAdmin() && (
+        <button className="btn-add-photo" onClick={() => navigate('/admin/photos/new')}>
+          + Ajouter une photo
+        </button>
+      )}
 
       <section className="vibe-board">
         <p className="vibe-intro">Notre manifeste créatif du moment</p>
@@ -146,12 +149,6 @@ function Gallery() {
           onNavigate={handleNavigate}
         />
       )}
-
-      <AddPhotoModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onPhotoAdded={loadPhotos}
-      />
     </div>
   );
 }

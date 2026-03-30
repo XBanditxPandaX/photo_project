@@ -1,4 +1,9 @@
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8080/api').replace(/\/+$/, '');
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+
+function getAuthHeaders() {
+  const token = localStorage.getItem('authToken');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
 
 export const photoService = {
   async getAllPhotos() {
@@ -18,7 +23,7 @@ export const photoService = {
   },
 
   getPhotoImageUrl(id) {
-    return `${API_BASE_URL}/${id}/image`;
+    return `${API_BASE_URL}/photos/${id}/image`;
   },
 
   async uploadPhoto(title, description, imageUrl, category) {
@@ -32,23 +37,48 @@ export const photoService = {
 
     const response = await fetch(API_BASE_URL + '/photos', {
       method: 'POST',
+      headers: getAuthHeaders(),
       body: formData
     });
 
     if (!response.ok) {
-      throw new Error('Failed to upload photo');
+      const message = response.status === 403
+        ? "Acces reserve a l'administrateur."
+        : 'Failed to upload photo';
+      throw new Error(message);
     }
     return response.json();
   },
 
   async deletePhoto(id) {
     const response = await fetch(`${API_BASE_URL}/photos/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: getAuthHeaders()
     });
 
     if (!response.ok) {
       throw new Error('Failed to delete photo');
     }
+  },
+
+  async updatePhoto(id, payload) {
+    const response = await fetch(`${API_BASE_URL}/photos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const message = response.status === 403
+        ? "Acces reserve a l'administrateur."
+        : 'Failed to update photo';
+      throw new Error(message);
+    }
+
+    return response.json();
   }
 };
 
