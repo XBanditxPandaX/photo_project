@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
-import {useNavigate} from "react-router";
+import { useNavigate } from "react-router";
+import { isAuthenticated, logout, getEmail } from './services/authService.js';
 
 const CONTRAST_STORAGE_KEY = 'contrastLevel';
 const DARK_MODE_STORAGE_KEY = 'darkModeEnabled';
@@ -23,10 +24,16 @@ const getInitialDarkMode = () => {
 };
 
 function App() {
-    const navigate=  useNavigate();
+    const navigate = useNavigate();
     const [contrast, setContrast] = useState(getInitialContrast);
     const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode);
     const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(isAuthenticated);
+
+    function handleLogout() {
+        logout();
+        setLoggedIn(false);
+    }
 
     useEffect(() => {
       const level = contrast / 100;
@@ -46,9 +53,20 @@ function App() {
         <header className="header">
           <h1>Galerie Photo</h1>
           <p>Portfolio du photographe</p>
-          <a className="header-contact-link" onClick={() => navigate("/contact")}>
-            Aller a la page contact
-          </a>
+          <div className="header-actions">
+            <a className="header-contact-link" onClick={() => navigate("/contact")}>
+              Aller a la page contact
+            </a>
+            {loggedIn ? (
+              <button className="header-auth-btn header-auth-btn--logout" onClick={handleLogout}>
+                Déconnexion
+              </button>
+            ) : (
+              <button className="header-auth-btn" onClick={() => navigate("/auth")}>
+                Se connecter
+              </button>
+            )}
+          </div>
         </header>
 
         <Hero />
