@@ -145,11 +145,21 @@ body::after {
   z-index: 1;
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.1rem;
+  position: relative;
+  z-index: 1;
+}
+
 .header-contact-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.1rem;
   padding: 0.62rem 1.1rem;
   border-radius: 999px;
   border: 1px solid var(--accent);
@@ -168,6 +178,36 @@ body::after {
   background: var(--accent);
   border-color: var(--accent-strong);
   transform: translateY(-1px);
+}
+
+.header-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.62rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.header-auth-btn:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.header-auth-btn--logout {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.header-auth-btn--logout:hover {
+  background: rgba(198, 63, 63, 0.1);
 }
 
 .accessibility-slider {
@@ -968,9 +1008,9 @@ body::after {
 .form-group select,
 .form-group textarea {
   padding: 0.75rem 0.82rem;
-  border: 1px solid #cadbe8;
+  border: 1px solid var(--border-soft);
   border-radius: 9px;
-  background: #ffffff;
+  background: var(--surface);
   color: var(--text-primary);
   font-size: 0.95rem;
   font-family: inherit;
@@ -1255,6 +1295,104 @@ body::after {
   font-weight: 600;
   font-size: 0.92rem;
 }
+
+/* ── Auth Page ─────────────────────────────────────────── */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  width: min(440px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1.6rem, 5vw, 2.4rem);
+  animation: pop-in 0.3s ease both;
+}
+
+.auth-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  color: var(--text-primary);
+  margin-bottom: 1.4rem;
+  text-align: center;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 0.28rem;
+}
+
+.auth-tab {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.auth-tab--active {
+  background: var(--accent-light);
+  color: var(--button-text);
+}
+
+.auth-error {
+  background: #ffe8e8;
+  color: var(--danger);
+  border: 1px solid #f4c0c0;
+  border-radius: 9px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-submit {
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.auth-back {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 0.88rem;
+}
+
+.auth-back a {
+  color: var(--accent-cool);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auth-back a:hover {
+  color: var(--accent);
+}
+
+/* ─────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
   .contact-panel {
