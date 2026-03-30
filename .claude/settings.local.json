@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/c/Users/themi/Desktop/CoursM1/M2/AcLabProject/backend/database\" && docker-compose up -d)",
+      "Bash(pkill -f \"PhotoApplication\" 2>/dev/null; sleep 2; echo \"killed\")",
+      "Bash(taskkill //F //IM java.exe 2>/dev/null; sleep 3; echo \"done\")"
+    ]
+  }
+}

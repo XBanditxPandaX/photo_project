@@ -1,16 +1,15 @@
 package com.photographer.controller;
 
 import com.photographer.model.Photo;
+import com.photographer.model.PhotoUpdateRequest;
+import com.photographer.service.AdminAccessService;
 import com.photographer.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,10 +21,12 @@ import java.util.stream.Collectors;
 public class PhotoController {
 
     private final PhotoService photoService;
+    private final AdminAccessService adminAccessService;
 
     @Autowired
-    public PhotoController(PhotoService photoService) {
+    public PhotoController(PhotoService photoService, AdminAccessService adminAccessService) {
         this.photoService = photoService;
+        this.adminAccessService = adminAccessService;
     }
 
     @GetMapping
@@ -53,20 +54,48 @@ public class PhotoController {
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> uploadPhoto(
+            Authentication authentication,
             @RequestParam("title") String title,
             @RequestParam(value = "description", required = false) String description,
             @RequestParam("image") String url,
             @RequestParam("category") String category) {
-        try {
-            Photo savedPhoto = photoService.savePhoto(title, description, url, category);
-            return ResponseEntity.status(HttpStatus.CREATED).body(toMetadataMap(savedPhoto));
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        if (!adminAccessService.isAdminEmail(authentication.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("error", "Acces reserve a l'administrateur."));
         }
+
+        Photo savedPhoto = photoService.savePhoto(title, description, url, category);
+        return ResponseEntity.status(HttpStatus.CREATED).body(toMetadataMap(savedPhoto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePhoto(
+            Authentication authentication,
+            @PathVariable("id") Long id,
+            @RequestBody PhotoUpdateRequest request) {
+        if (!adminAccessService.isAdminEmail(authentication.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("error", "Acces reserve a l'administrateur."));
+        }
+
+        return photoService.updatePhoto(
+                        id,
+                        request.title(),
+                        request.description(),
+                        request.imageUrl(),
+                        request.category()
+                )
+                .map(photo -> ResponseEntity.ok(toMetadataMap(photo)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePhoto(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deletePhoto(Authentication authentication, @PathVariable("id") Long id) {
+        if (!adminAccessService.isAdminEmail(authentication.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("error", "Acces reserve a l'administrateur."));
+        }
+
         if (photoService.getPhotoById(id).isPresent()) {
             photoService.deletePhoto(id);
             return ResponseEntity.noContent().build();

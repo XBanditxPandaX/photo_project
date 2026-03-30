@@ -30,3 +30,6 @@ brevo:
   api:
     url: ${BREVO_API_URL:https://api.brevo.com/v3/smtp/email}
     key: ${BREVO_API_KEY:}
+
+jwt:
+  secret: ${JWT_SECRET:cGhvdG9wcm9qZWN0LXNlY3JldC1rZXktMjAyNC12ZXJ5LWxvbmctc3RyaW5nLWZvci1zZWN1cml0eQ==}
