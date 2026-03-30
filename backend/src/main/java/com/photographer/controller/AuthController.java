@@ -3,7 +3,9 @@ package com.photographer.controller;
 import com.photographer.model.AuthResponse;
 import com.photographer.model.LoginRequest;
 import com.photographer.model.RegisterRequest;
+import com.photographer.service.AdminAccessService;
 import com.photographer.service.AuthService;
+import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +16,11 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
+    private final AdminAccessService adminAccessService;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, AdminAccessService adminAccessService) {
         this.authService = authService;
+        this.adminAccessService = adminAccessService;
     }
 
     @PostMapping("/register")
@@ -37,5 +41,14 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", "Email ou mot de passe incorrect."));
         }
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> me(Authentication authentication) {
+        String email = authentication.getName();
+        return ResponseEntity.ok(Map.of(
+                "email", email,
+                "isAdmin", adminAccessService.isAdminEmail(email)
+        ));
     }
 }

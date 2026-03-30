@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import { useNavigate } from "react-router";
-import { isAuthenticated, logout, getEmail } from './services/authService.js';
+import { isAuthenticated, logout, syncCurrentUser } from './services/authService.js';
 
 const CONTRAST_STORAGE_KEY = 'contrastLevel';
 const DARK_MODE_STORAGE_KEY = 'darkModeEnabled';
@@ -46,6 +46,16 @@ function App() {
       document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
       localStorage.setItem(DARK_MODE_STORAGE_KEY, String(isDarkMode));
     }, [isDarkMode]);
+
+    useEffect(() => {
+      if (!isAuthenticated()) {
+        return;
+      }
+
+      syncCurrentUser().catch(() => {
+        setLoggedIn(false);
+      });
+    }, []);
 
   return (
     <>
