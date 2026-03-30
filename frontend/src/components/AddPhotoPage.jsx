@@ -23,12 +23,6 @@ const ADMIN_TABS = [
     description: 'Modifier et supprimer',
     to: '/admin/gallery',
   },
-  {
-    id: 'settings',
-    label: 'Parametres',
-    description: 'Options de l espace admin',
-    enabled: false,
-  },
 ];
 
 function emptyEditState() {
@@ -260,6 +254,9 @@ function AddPhotoPage() {
     <div className="add-photo-page">
       <div className="add-photo-shell admin-shell">
         <aside className="admin-sidebar">
+            <p className="auth-back">
+                <Link to="/">Retour a la galerie</Link>
+            </p>
           <div className="admin-sidebar-card">
             <p className="add-photo-kicker">Administration</p>
             <h1 className="admin-sidebar-title">Espace admin</h1>
