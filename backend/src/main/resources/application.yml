@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/photo_db}
-    username: ${PGUSER:admin}
-    password: ${PGPASSWORD:admin}
+    url: jdbc:postgresql://localhost:5432/photo_db
+    username: admin
+    password: admin
     driver-class-name: org.postgresql.Driver
   servlet:
     multipart:
