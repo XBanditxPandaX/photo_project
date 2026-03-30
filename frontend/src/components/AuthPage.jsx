@@ -75,7 +75,7 @@ export default function AuthPage() {
                             onChange={e => setPassword(e.target.value)}
                             placeholder="••••••••"
                             required
-                            minLength={6}
+                            minLength={5}
                         />
                     </div>
                     <button className="btn-submit auth-submit" type="submit" disabled={loading}>
